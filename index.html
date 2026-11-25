@@ -60,6 +60,7 @@
             height: 48px;
             width: auto;
             display: block;
+            pointer-events: none;
         }
 
         .nav-links,
@@ -80,7 +81,7 @@
         .nav-right-links a {
             background: none;
             border: none;
-            padding: 0;
+            padding: 8px 0;
             text-decoration: none;
             color: #6f747a;
             font-size: 16px;
@@ -104,30 +105,36 @@
             font-size: 10px;
             color: #8c9197;
             transform: translateY(1px);
+            pointer-events: none;
         }
 
-        /* Dropdown Menus */
+        /* Dropdown Menus (padding-top keeps hover active from button to menu) */
         .dropdown-menu {
             display: none;
             position: absolute;
-            top: calc(100% + 14px);
+            top: 100%;
             left: 0;
-            min-width: 160px;
+            padding-top: 8px;
+            min-width: 170px;
+            z-index: 200;
+        }
+
+        .dropdown-inner {
             background-color: #ffffff;
             border: 1px solid #e4e6e8;
             border-radius: 8px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            padding: 8px 0;
-            z-index: 100;
+            padding: 6px 0;
         }
 
         .nav-item:hover .dropdown-menu,
-        .nav-item:focus-within .dropdown-menu {
+        .nav-item:focus-within .dropdown-menu,
+        .nav-item.open .dropdown-menu {
             display: block;
         }
 
-        .dropdown-menu button,
-        .dropdown-menu a {
+        .dropdown-inner button,
+        .dropdown-inner a {
             display: block;
             width: 100%;
             text-align: left;
@@ -140,8 +147,8 @@
             text-decoration: none;
         }
 
-        .dropdown-menu button:hover,
-        .dropdown-menu a:hover {
+        .dropdown-inner button:hover,
+        .dropdown-inner a:hover {
             background-color: #fff6f2;
             color: #ff4f00;
         }
@@ -478,7 +485,9 @@
                 <div class="nav-item">
                     <button type="button" class="nav-btn" data-route="products">Products <span class="caret">▼</span></button>
                     <div class="dropdown-menu">
-                        <button type="button" data-route="products">Wano</button>
+                        <div class="dropdown-inner">
+                            <button type="button" data-route="products">Wano</button>
+                        </div>
                     </div>
                 </div>
                 <button type="button" class="nav-btn" data-route="support">Support wano</button>
@@ -493,7 +502,9 @@
                 <div class="nav-item">
                     <button type="button" class="nav-btn" data-route="help">Help <span class="caret">▼</span></button>
                     <div class="dropdown-menu">
-                        <button type="button" data-route="help">Help Center</button>
+                        <div class="dropdown-inner">
+                            <button type="button" data-route="help">Help Center</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -682,11 +693,14 @@
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
-        document.querySelectorAll("[data-route]").forEach((el) => {
-            el.addEventListener("click", () => {
-                const route = el.getAttribute("data-route");
+        // Event delegation ensures clicks work even on nested elements like carets or logos
+        document.addEventListener("click", (e) => {
+            const routeTarget = e.target.closest("[data-route]");
+            if (!routeTarget) return;
+            const route = routeTarget.getAttribute("data-route");
+            if (route && views[route]) {
                 showView(route);
-            });
+            }
         });
 
         // Blog Loader from blogs.html + Password-Protected Composer

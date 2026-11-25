@@ -49,7 +49,10 @@
         .logo {
             display: flex;
             align-items: center;
-            text-decoration: none;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
             flex-shrink: 0;
         }
 
@@ -72,8 +75,12 @@
             align-items: center;
         }
 
+        .nav-btn,
         .nav-links a,
         .nav-right-links a {
+            background: none;
+            border: none;
+            padding: 0;
             text-decoration: none;
             color: #6f747a;
             font-size: 16px;
@@ -86,10 +93,10 @@
             cursor: pointer;
         }
 
+        .nav-btn:hover,
         .nav-links a:hover,
         .nav-right-links a:hover,
-        .nav-links a.active-link,
-        .nav-right-links a.active-link {
+        .nav-btn.active-link {
             color: #ff4f00; /* Kano Orange */
         }
 
@@ -119,49 +126,24 @@
             display: block;
         }
 
+        .dropdown-menu button,
         .dropdown-menu a {
             display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
             padding: 9px 16px;
             font-size: 14px;
             color: #4b5056;
+            cursor: pointer;
+            text-decoration: none;
         }
 
+        .dropdown-menu button:hover,
         .dropdown-menu a:hover {
             background-color: #fff6f2;
             color: #ff4f00;
-        }
-
-        /* Right Side Controls */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .nav-divider {
-            width: 1px;
-            height: 36px;
-            background-color: #e4e6e8;
-        }
-
-        .circle-action-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #3a3d42;
-            color: #ffffff;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: background-color 0.2s, transform 0.15s;
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-
-        .circle-action-btn:hover {
-            background-color: #ff4f00;
-            transform: translateY(-1px);
         }
 
         /* Views */
@@ -206,6 +188,9 @@
 
         .learn-more-link {
             display: inline-block;
+            background: none;
+            border: none;
+            padding: 0;
             margin-bottom: 24px;
             color: #ff4f00;
             font-weight: 600;
@@ -503,45 +488,35 @@
     <header class="navbar">
         <div class="nav-left">
             <!-- REPLACE 'wano-logo.png' WITH YOUR LOGO IMAGE FILE IN THE REPO -->
-            <a href="#start" class="logo" data-route="start">
+            <button type="button" class="logo" data-route="start" aria-label="Wano Home">
                 <img src="wano-logo.png" alt="Wano - You can make">
-            </a>
+            </button>
 
             <nav class="nav-links" aria-label="Primary Navigation">
                 <div class="nav-item">
-                    <a href="#products" data-route="products">Products <span class="caret">▼</span></a>
+                    <button type="button" class="nav-btn" data-route="products">Products <span class="caret">▼</span></button>
                     <div class="dropdown-menu">
-                        <a href="#products" data-route="products">Wano</a>
-                        <a href="#about" data-route="about">About Wano</a>
+                        <button type="button" data-route="products">Wano</button>
+                        <button type="button" data-route="about">About Wano</button>
                     </div>
                 </div>
-                <a href="#support" data-route="support">Support wano</a>
-                <a href="#download-btn" data-route="start">Downloads</a>
+                <button type="button" class="nav-btn" data-route="support">Support wano</button>
+                <button type="button" class="nav-btn" data-route="start">Downloads</button>
             </nav>
         </div>
 
         <div class="nav-right">
             <div class="nav-right-links">
-                <a href="#blog" data-route="blog">Blog</a>
+                <button type="button" class="nav-btn" data-route="blog">Blog</button>
                 <a href="https://github.com/mdbcar/Wano" target="_blank" rel="noopener noreferrer">Github</a>
                 <div class="nav-item">
-                    <a href="#about" data-route="about">Help <span class="caret">▼</span></a>
+                    <button type="button" class="nav-btn" data-route="about">Help <span class="caret">▼</span></button>
                     <div class="dropdown-menu">
-                        <a href="#about" data-route="about">About Wano</a>
-                        <a href="#support" data-route="support">Support wano</a>
+                        <button type="button" data-route="about">About Wano</button>
+                        <button type="button" data-route="support">Support wano</button>
                     </div>
                 </div>
             </div>
-
-            <span class="nav-divider" aria-hidden="true"></span>
-
-            <a href="#about" class="circle-action-btn" title="About Wano" aria-label="About Wano" data-route="about">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <circle cx="9" cy="21" r="1"></circle>
-                    <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-            </a>
         </div>
     </header>
 
@@ -553,7 +528,7 @@
                 <p>Kano's servers are gone, but what kano made doesn't have to go away. Wano brings the desktop, Story Mode, and activities back to life on modern Windows computers. Fully offline. Single file. Simple, fun, and for everyone.</p>
                 
                 <div>
-                    <a href="#about" class="learn-more-link" data-route="about">Learn more →</a>
+                    <button type="button" class="learn-more-link" data-route="about">Learn more →</button>
                 </div>
 
                 <!-- REPLACE THIS URL WITH YOUR ACTUAL TAILSCALE DOWNLOAD LINK -->
@@ -577,7 +552,7 @@
                 <h1>About Wano</h1>
                 <p>Wano is an offline Windows project designed to keep Kano's desktop experience, Story Mode, and creative coding spirit alive after Kano's servers shut down.</p>
                 <p>It is built to be simple, self-contained, and accessible so anyone can explore and create without relying on discontinued cloud services.</p>
-                <a href="#start" class="btn-orange" data-route="start">← Back to Wano</a>
+                <button type="button" class="btn-orange" data-route="start">← Back to Wano</button>
             </div>
         </div>
     </section>
@@ -589,7 +564,7 @@
                 <h1>Support Wano</h1>
                 <p>You can support Wano by simply telling other people about it.</p>
                 <p>Share Wano with friends, classmates, retro tech fans, or anyone who enjoyed Kano kits and wants to keep those tools and stories alive.</p>
-                <a href="#start" class="btn-orange" data-route="start">Back to Wano</a>
+                <button type="button" class="btn-orange" data-route="start">Back to Wano</button>
             </div>
         </div>
     </section>
@@ -691,12 +666,9 @@
         }
 
         document.querySelectorAll("[data-route]").forEach((el) => {
-            el.addEventListener("click", (e) => {
+            el.addEventListener("click", () => {
                 const route = el.getAttribute("data-route");
-                if (views[route]) {
-                    e.preventDefault();
-                    showView(route);
-                }
+                showView(route);
             });
         });
 

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Wano — Anyone can make.</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <style>
+    :root{--orange:#ff4f00;--orange-dark:#e64600;--ink:#171717;--muted:#5c6066;--line:#e5e7e9;--paper:#fff;--bg:#f8f8f8;--shadow:0 18px 48px rgba(0,0,0,.09)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh}
+    a{color:inherit}.top-bar{height:16px;background:#3a3d42}
+    .navbar{height:76px;padding:0 clamp(20px,4vw,54px);display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+    .nav-left,.nav-links,.nav-right-links{display:flex;align-items:center}.nav-left{gap:38px}.nav-links,.nav-right-links{gap:30px}
+    .logo{display:flex;align-items:center;text-decoration:none}.logo img{height:46px;width:auto;display:block}.logo-fallback{font-size:27px;font-weight:900;letter-spacing:-1.5px;color:#65a7f5}
+    .nav-links a,.nav-right-links>a,.nav-item>a{font-size:16px;font-weight:500;color:#686e75;text-decoration:none;white-space:nowrap;transition:color .2s}
+    .nav-links a:hover,.nav-right-links a:hover,.nav-item>a:hover{color:var(--orange)}
+    .nav-item{position:relative}.caret{font-size:10px;color:#92979d;margin-left:5px}
+    .dropdown-menu{position:absolute;top:100%;left:-12px;padding-top:12px;min-width:185px;display:none;z-index:60}.dropdown-inner{background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:7px}
+    .dropdown-inner a{display:block;padding:11px 13px;border-radius:7px;font-size:14px;color:#4b5056}.dropdown-inner a:hover{background:#fff4ee}.nav-item:hover .dropdown-menu,.nav-item:focus-within .dropdown-menu,.nav-item.open .dropdown-menu{display:block}
+    .menu-toggle{display:none;border:0;background:#f1f2f3;border-radius:9px;padding:10px 12px;font-size:20px;cursor:pointer}
+    .page-view{display:none;animation:appear .22s ease}.page-view.active{display:block}@keyframes appear{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:none}}
+    .hero{max-width:1320px;margin:clamp(64px,8vw,112px) auto;padding:0 clamp(24px,5vw,64px);display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);align-items:center;gap:clamp(36px,6vw,84px)}
+    .hero-text{max-width:540px}.eyebrow{display:inline-block;color:var(--orange);font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+    .hero h1{font-size:clamp(40px,4vw,58px);line-height:1.04;letter-spacing:-2px;margin:0 0 24px;font-weight:850;color:#111}
+    .hero p{font-size:18px;line-height:1.7;color:#555;margin:0 0 30px}
+    .hero-image{text-align:right}.hero-image img{display:block;width:100%;height:auto;max-height:470px;object-fit:contain;border-radius:14px;box-shadow:0 22px 48px rgba(0,0,0,.11);background:#e9e9e9}
+    .beta-ui-note{display:none;color:#8b8f94;font-size:13px;font-style:italic;margin:12px 2px 0}.cta-btn,.btn-orange{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--orange);color:white;text-decoration:none;border:0;border-radius:999px;padding:16px 36px;font-size:15px;font-weight:800;letter-spacing:.2px;cursor:pointer;box-shadow:0 5px 14px rgba(255,79,0,.18);transition:background .18s,transform .18s}
+    .cta-btn:hover,.btn-orange:hover{background:var(--orange-dark);transform:translateY(-2px)}.cta-btn.disabled{background:#ccc;color:#666;box-shadow:none;cursor:not-allowed;transform:none}
+    .page-container{max-width:960px;margin:70px auto;padding:0 28px}.card-box{background:#fff;border:1px solid var(--line);border-radius:15px;padding:clamp(24px,4vw,42px);box-shadow:0 12px 32px rgba(0,0,0,.045);margin-bottom:24px}
+    .card-box h1{font-size:clamp(30px,4vw,40px);letter-spacing:-1px;margin:0 0 14px;color:#111}.card-box h2{font-size:23px;margin:0 0 12px}.card-box p{font-size:16px;line-height:1.7;color:#555;margin:0 0 16px}
+    .card-box p:last-child{margin-bottom:0}.btn-secondary{border:0;border-radius:999px;padding:12px 19px;background:#eef0f2;color:#333;font-weight:700;cursor:pointer}.btn-secondary:hover{background:#e0e3e7}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}.feature{padding:19px;border:1px solid var(--line);border-radius:12px;background:#fff}.feature strong{display:block;margin-bottom:7px}.feature p{font-size:14px;margin:0}
+    .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px;margin-top:28px}
+    .product-card{display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 16px 20px;text-decoration:none;color:#111;box-shadow:0 4px 12px rgba(0,0,0,.03);transition:transform .18s,box-shadow .18s,border-color .18s}
+    .product-card:hover{transform:translateY(-3px);border-color:#ffd1bd;box-shadow:0 12px 26px rgba(255,79,0,.12)}
+    .product-card:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+    .product-thumb{width:84px;height:84px;display:flex;align-items:center;justify-content:center;background:#f6f7f8;border-radius:10px;margin-bottom:14px;overflow:hidden}
+    .product-thumb img{max-width:88%;max-height:88%;object-fit:contain;display:block}
+    .product-name{font-size:17px;font-weight:700;color:#111}
+    .product-empty{grid-column:1/-1;text-align:center;color:#858a90;font-size:15px;padding:30px}
+    .product-back{display:inline-flex;align-items:center;gap:8px;margin-top:26px}
+    .download-meta{display:block;color:#858a90;font-size:13px;margin-top:14px}.dev-notice{display:none;margin-top:14px;padding:12px 15px;background:#fff3ed;border:1px solid #ffd1bd;color:#b83b00;border-radius:9px;font-size:14px;font-weight:650}
+    .blog-header-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:22px}.blog-header-row p{margin:0}
+    .blog-post{background:#fff;border:1px solid var(--line);border-radius:13px;padding:24px 28px;margin-bottom:17px;box-shadow:0 5px 18px rgba(0,0,0,.025)}.blog-post-date{font-size:12px;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}.blog-post h3{font-size:21px;margin:0 0 10px}.blog-post p{font-size:15px;line-height:1.65;color:#4b5056;white-space:pre-line;margin:0}
+    .editor-panel{display:none;background:#fffaf7;border:1px solid #ffd6c2;border-radius:12px;padding:24px;margin:20px 0}.editor-panel.open{display:block}.form-group{margin:0 0 15px}.form-group label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}.form-group input,.form-group textarea{width:100%;border:1px solid #d4d8dd;border-radius:8px;padding:12px;font:inherit;background:white;color:#111}.form-group textarea{min-height:140px;resize:vertical}.form-group input:focus,.form-group textarea:focus{outline:2px solid #ffb18d;border-color:var(--orange)}
+    .status-msg{font-size:13px;font-weight:700;color:#bd3b00;margin-top:10px;min-height:18px}.snippet-box{display:none;white-space:pre-wrap;overflow-wrap:anywhere;background:#202329;color:#f4f5f6;padding:16px;border-radius:9px;font:12px/1.6 ui-monospace,monospace;margin:14px 0 0}.snippet-box.open{display:block}
+    .help-intro{font-size:17px;line-height:1.7;color:#555;margin:0 0 26px}
+    .faq-list{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+    .faq-item{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.03);overflow:hidden;transition:border-color .18s,box-shadow .18s}
+    .faq-item:hover{border-color:#ffd1bd;box-shadow:0 6px 18px rgba(255,79,0,.08)}
+    .faq-question{display:flex;align-items:flex-start;gap:14px;width:100%;border:0;background:transparent;text-align:left;padding:20px 24px;cursor:pointer;font:inherit;color:#111}
+    .faq-question:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:12px}
+    .faq-number{flex:0 0 auto;min-width:30px;height:30px;border-radius:50%;background:var(--orange);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1}
+    .faq-q-text{flex:1;font-size:17px;font-weight:700;line-height:1.45;color:#111}
+    .faq-chevron{flex:0 0 auto;margin-top:3px;font-size:13px;color:#92979d;transition:transform .2s}
+    .faq-item.open .faq-chevron{transform:rotate(180deg)}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .25s ease}
+    .faq-item.open .faq-answer{max-height:500px}
+    .faq-answer-inner{padding:0 24px 22px 68px;font-size:15px;line-height:1.7;color:#4b5056}
+    .faq-answer-inner strong{color:#111;font-weight:700}
+    .faq-answer-inner a{color:var(--orange);text-decoration:none;font-weight:600}
+    .faq-answer-inner a:hover{text-decoration:underline}
+    .help-footer-note{margin-top:30px;padding:18px 22px;background:#fff4ee;border:1px solid #ffd6c2;border-radius:11px;font-size:14px;line-height:1.6;color:#7a3a16}
+    .help-footer-note a{color:var(--orange-dark);font-weight:700}
+    .faq-q-text code,.faq-answer-inner code{background:#f1f2f3;color:#c04000;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;padding:2px 6px;border-radius:5px}
+    .footer{border-top:1px solid var(--line);padding:28px 24px;text-align:center;color:#858a90;font-size:13px;margin-top:90px}.footer a{color:#646a70;text-decoration:none}.footer a:hover{color:var(--orange)}
+    @media(max-width:900px){.navbar{height:auto;min-height:70px;flex-wrap:wrap}.menu-toggle{display:block}.nav-left{gap:15px}.nav-links,.nav-right{display:none;width:100%}.navbar.menu-open .nav-links,.navbar.menu-open .nav-right{display:flex;flex-direction:column;align-items:flex-start;padding:12px 0 18px}.navbar.menu-open .nav-links{gap:16px}.navbar.menu-open .nav-right-links{align-items:flex-start;flex-direction:column;gap:16px}.nav-item .dropdown-menu{position:static;padding:7px 0 0}.nav-item.open .dropdown-menu{display:block}.hero{grid-template-columns:1fr;margin:58px auto;text-align:center}.hero-text{margin:auto}.hero-image{text-align:center}.hero-image img{max-height:420px}.feature-grid{grid-template-columns:1fr}}
+    @media(max-width:520px){.logo img{height:39px}.hero h1{letter-spacing:-1.3px}.hero p{font-size:16px}.page-container{margin:38px auto;padding:0 16px}.card-box{padding:23px}.blog-post{padding:20px}.cta-btn{padding:14px 27px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="top-bar"></div>
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <a class="logo" href="#start" aria-label="Wano home"><img src="wano-logo.png" alt="Wano" onerror="this.style.display='none';this.nextElementSibling.hidden=false"><span class="logo-fallback" hidden>W.ANO</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#products">Products</a><a href="#support">Support wano</a><a href="#downloads">Downloads</a>
+      </nav>
+    </div>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <div class="nav-right"><nav class="nav-right-links" aria-label="More navigation"><a href="#blog">Blog</a><a href="https://github.com/mdbcar/Wano" target="_blank" rel="noopener noreferrer">Github</a><div class="nav-item"><a href="#help" aria-haspopup="true">Help <span class="caret">▼</span></a><div class="dropdown-menu"><div class="dropdown-inner"><a href="#help">Help Center</a></div></div></div></nav></div>
+  </header>
+
+  <main>
+    <section id="view-start" class="page-view">
+      <div class="hero"><div class="hero-text"><span class="eyebrow">A little creativity goes a long way</span><h1>Anyone can make.</h1><p>Kano's servers are gone, but what Kano made doesn't have to go away. Wano brings the desktop, Story Mode, and activities back to life on modern Windows computers. Fully offline. Single file. Simple, fun, and for everyone.</p><a class="cta-btn" href="#about">LEARN MORE</a></div><div class="hero-image"><img src="wano-desktop.png" alt="Wano desktop interface preview"><p class="beta-ui-note" data-beta-note>Preview UI is not finished and is subject to change.</p></div></div>
+    </section>
+    <section id="view-products" class="page-view">
+      <div class="page-container"><div class="card-box"><span class="eyebrow">Browse the catalog</span><h1>Products</h1><p>Everything we make, in one place. Pick one to see the full overview.</p><div id="product-grid" class="product-grid" aria-live="polite"></div></div></div>
+    </section>
+    <section id="view-product" class="page-view">
+      <div class="hero"><div class="hero-text"><span class="eyebrow" id="product-eyebrow">Meet Wano</span><h1 id="product-title">Wano</h1><p id="product-tagline">Wano brings Kano's desktop experience, Story Mode, and activities back to life on modern Windows computers — fully offline in a single file.</p><a class="cta-btn" href="#downloads">GO TO DOWNLOADS</a><a class="btn-secondary product-back" href="#products">← All products</a></div><div class="hero-image"><img id="product-image" src="wano-desktop.png" alt="Wano desktop interface preview"><p class="beta-ui-note" data-beta-note>Preview UI is not finished and is subject to change.</p></div></div>
+    </section>
+    <section id="view-about" class="page-view"><div class="page-container"><div class="card-box"><span class="eyebrow">The story behind the project</span><h1>About Wano</h1><p>Kano made computers feel welcoming, creative, and fun. Even though Kano's online services have gone away, the experience and the things people made with them are still worth keeping alive.</p><p>Wano is a project focused on bringing the Kano desktop, Story Mode, and activities back to modern Windows computers. The goal is simple: make it easy to jump in, explore, and create — without depending on the original online services.</p><div class="feature-grid"><div class="feature"><strong>Fully offline</strong><p>Use the experience without relying on Kano's servers.</p></div><div class="feature"><strong>One file</strong><p>A straightforward Windows package, designed to be easy to run.</p></div><div class="feature"><strong>Made for making</strong><p>Keep the creative spirit of Kano alive on today's computers.</p></div></div><a class="btn-orange" href="#start">← Back to Start</a></div></div></section>
+    <section id="view-downloads" class="page-view"><div class="page-container"><div class="card-box"><span class="eyebrow">Get started</span><h1>Download Wano</h1><p>Get Wano for Windows. Fully offline, single file, and free.</p><a id="download-btn" href="https://mdbcar-services-server1.tail2a4cdb.ts.net/wano/WANO.pyw" class="cta-btn">DOWNLOAD WANO 5.0.0</a><div id="dev-notice" class="dev-notice" role="status">Wano is still in development. Downloads will be available when the release is ready.</div><span class="download-meta">Windows .pyw file · 186 MB · Free</span></div></div></section>
+    <section id="view-support" class="page-view"><div class="page-container"><div class="card-box"><span class="eyebrow">Keep the project going</span><h1>Support Wano</h1><p>You can support Wano by simply telling other people about it.</p><p>Share Wano with friends, classmates, retro-tech fans, or anyone who enjoyed Kano kits and wants to keep those tools and stories alive.</p><a class="btn-orange" href="https://github.com/mdbcar/Wano" target="_blank" rel="noopener noreferrer">Visit the GitHub project</a></div></div></section>
+    <section id="view-blog" class="page-view"><div class="page-container"><div class="card-box"><div><span class="eyebrow">What's happening</span><h1>Wano Blog</h1><p>Development notes, updates, and progress on Wano.</p></div>
+    </div><div id="blog-posts-list" aria-live="polite"><article class="blog-post"><div class="blog-post-date">Wano Devlog</div><h3>Welcome to the Wano Blog</h3><p>Add blogs.html to your repository to publish updates here.</p></article></div></div></section>
+    <section id="view-help" class="page-view"><div class="page-container"><div class="card-box"><span class="eyebrow">Need a hand?</span><h1>Wano Help Center</h1><p class="help-intro">Find answers to common questions about installing, starting, and using Wano.</p>
+      <h2 style="font-size:23px;margin:0 0 16px">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span class="faq-number">1</span><span class="faq-q-text">I downloaded Wano, but when I double-click the <code>.pyw</code> file, nothing happens. What should I do?</span><span class="faq-chevron">▼</span></button><div class="faq-answer"><div class="faq-answer-inner">Make sure to run the included <code>.bat</code> file first, then accept any prompts it gives you. This sets up the supporting files Wano needs to run.</div></div></div>
+        <div class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span class="faq-number">2</span><span class="faq-q-text">Do I need to install Python separately?</span><span class="faq-chevron">▼</span></button><div class="faq-answer"><div class="faq-answer-inner">The included <code>.bat</code> file installs the supporting files needed to run Wano. Make sure to run it and accept any prompts it gives you.</div></div></div>
+        <div class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span class="faq-number">3</span><span class="faq-q-text">Wano is slow or freezes shortly after I first install it. Is that normal?</span><span class="faq-chevron">▼</span></button><div class="faq-answer"><div class="faq-answer-inner">Wano is usually slow when you first install it because it has to set up and download files in the background. Give it a moment and it should get better.</div></div></div>
+        <div class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span class="faq-number">4</span><span class="faq-q-text">My antivirus flagged a Wano file. Is Wano safe?</span><span class="faq-chevron">▼</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes, Wano is safe. An antivirus may flag it because it's new software and hasn't been fully verified yet.</div></div></div>
+        <div class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span class="faq-number">5</span><span class="faq-q-text">Windows asks for permission when I run the <code>.bat</code> file. What should I do?</span><span class="faq-chevron">▼</span></button><div class="faq-answer"><div class="faq-answer-inner">Press <strong>Yes</strong> so it can install Wano's supporting files.</div></div></div>
+        <div class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span class="faq-number">6</span><span class="faq-q-text">Wano won't open immediately after I haven't used it for a while. Is it broken?</span><span class="faq-chevron">▼</span></button><div class="faq-answer"><div class="faq-answer-inner">Wano can take <strong>10–60 seconds</strong> to start after being closed for a while. Give it a minute and it should open.</div></div></div>
+      </div>
+      <div class="help-footer-note">Still stuck? Visit the project on <a href="https://github.com/mdbcar/Wano" target="_blank" rel="noopener noreferrer">GitHub</a> to check the source or open an issue.</div>
+    </div></div></section>
+  </main>
+  <footer class="footer">Wano · Keeping the spirit of making alive · <a href="#about">About</a> · <a href="#blog">Blog</a> · <a href="https://github.com/mdbcar/Wano">GitHub</a></footer>
+
+  <script>
+  (() => {
+    "use strict";
+    // Keep these release settings here. Change only when the release is ready.
+    const IS_IN_DEV = true;
+    const IS_BETA_UI = true;
+    // NOTE: A password stored in front-end JavaScript is visible to anyone who views the site source.
+    // This is a convenience lock, NOT secure authentication.
+    const BLOGS_PAGE_URL = "blogs.html";
+    const routes = { "": "start", "#": "start", "#start": "start", "#products": "products", "#about": "about", "#downloads": "downloads", "#support": "support", "#blog": "blog", "#help": "help" };
+    const navbar = document.getElementById("navbar");
+    const menuToggle = document.getElementById("menu-toggle");
+
+    // Product catalog. Add entries here as more products ship.
+    const PRODUCTS = [
+      { slug: "wano", name: "Wano", image: "wano-desktop.png", eyebrow: "Meet Wano", tagline: "Wano brings Kano's desktop experience, Story Mode, and activities back to life on modern Windows computers — fully offline in a single file." }
+    ];
+    const productGrid = document.getElementById("product-grid");
+    function renderProductList() {
+      if (!productGrid) return;
+      productGrid.replaceChildren();
+      if (!PRODUCTS.length) {
+        const empty = document.createElement("p"); empty.className = "product-empty";
+        empty.textContent = "No products available yet. Check back soon.";
+        productGrid.append(empty); return;
+      }
+      PRODUCTS.forEach(product => {
+        const card = document.createElement("a");
+        card.className = "product-card";
+        card.href = `#product/${product.slug}`;
+        const thumb = document.createElement("div"); thumb.className = "product-thumb";
+        const img = document.createElement("img"); img.src = product.image; img.alt = product.name; img.loading = "lazy";
+        thumb.append(img);
+        const name = document.createElement("span"); name.className = "product-name"; name.textContent = product.name;
+        card.append(thumb, name); productGrid.append(card);
+      });
+    }
+    function renderProduct(slug) {
+      const product = PRODUCTS.find(p => p.slug === slug) || PRODUCTS[0];
+      if (!product) { window.location.hash = "#products"; return; }
+      const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+      set("product-eyebrow", product.eyebrow);
+      set("product-title", product.name);
+      set("product-tagline", product.tagline);
+      const img = document.getElementById("product-image");
+      if (img) { img.src = product.image; img.alt = product.name; }
+    }
+
+    function route() {
+      const key = window.location.hash.toLowerCase();
+      let name, productSlug = null;
+      if (key.startsWith("#product/")) { name = "product"; productSlug = key.slice("#product/".length) || null; }
+      else name = routes[key] || "start";
+      document.querySelectorAll(".page-view").forEach(section => {
+        const active = section.id === `view-${name}`;
+        section.classList.toggle("active", active);
+        section.setAttribute("aria-hidden", String(!active));
+      });
+      document.querySelectorAll(".nav-links a[href^='#'],.nav-right-links a[href^='#']").forEach(link => {
+        if (link.getAttribute("href") === `#${name}`) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      });
+      navbar.classList.remove("menu-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      if (name === "products") renderProductList();
+      else if (name === "product") renderProduct(productSlug);
+      if (name === "blog") queueMicrotask(() => loadBlogs());
+      window.scrollTo({top: 0, behavior: "auto"});
+    }
+    document.addEventListener("click", event => {
+      const link = event.target.closest("a[href^='#']");
+      if (!link) return;
+      const href = link.getAttribute("href");
+      const hrefLower = href.toLowerCase();
+      // Allow product detail links (#product/<slug>) and any registered route.
+      if (!Object.prototype.hasOwnProperty.call(routes, hrefLower) && !hrefLower.startsWith("#product/")) return;
+      event.preventDefault();
+      if (window.location.hash === href) route();
+      else window.location.hash = href;
+    });
+    window.addEventListener("hashchange", route);
+    menuToggle.addEventListener("click", () => {
+      const open = navbar.classList.toggle("menu-open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+    });
+    document.querySelectorAll(".nav-item > a").forEach(link => link.addEventListener("click", event => {
+      if (window.matchMedia("(max-width: 900px)").matches) {
+        const item = link.parentElement;
+        if (!item.classList.contains("open")) { event.preventDefault(); item.classList.add("open"); }
+      }
+    }));
+    route();
+
+    // FAQ accordion for the Help Center
+    document.querySelectorAll(".faq-question").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.toggle("open");
+        btn.setAttribute("aria-expanded", String(isOpen));
+      });
+    });
+
+    const downloadBtn = document.getElementById("download-btn");
+    const devNotice = document.getElementById("dev-notice");
+    if (IS_IN_DEV) {
+      downloadBtn.classList.add("disabled");
+      downloadBtn.setAttribute("aria-disabled", "true");
+      downloadBtn.addEventListener("click", event => { event.preventDefault(); devNotice.style.display = "block"; });
+    }
+    if (IS_BETA_UI) document.querySelectorAll("[data-beta-note]").forEach(note => note.style.display = "block");
+
+    const postsList = document.getElementById("blog-posts-list");
+    const fallback = [{date:"Wano Devlog",title:"Welcome to the Wano Blog",body:"Add blogs.html to your repository to publish posts here."}];
+    let currentPosts = [];
+    const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+    function renderPosts(posts) {
+      currentPosts = posts;
+      postsList.replaceChildren();
+      posts.forEach(post => {
+        const article = document.createElement("article"); article.className = "blog-post";
+        const date = document.createElement("div"); date.className = "blog-post-date"; date.textContent = post.date;
+        const title = document.createElement("h3"); title.textContent = post.title;
+        const body = document.createElement("p"); body.textContent = post.body;
+        article.append(date,title,body); postsList.append(article);
+      });
+    }
+    let loadSequence = 0;
+    async function loadBlogs() {
+      const sequence = ++loadSequence;
+      try {
+        const response = await fetch(`${BLOGS_PAGE_URL}?v=${Date.now()}`, {cache:"no-store"});
+        if (!response.ok) throw new Error("blogs.html not found");
+        const parsed = new DOMParser().parseFromString(await response.text(),"text/html");
+        const articles = [...parsed.querySelectorAll("article.blog-post:not([data-template])")];
+        const posts = articles.map(article => ({
+          date: article.querySelector(".blog-post-date")?.textContent.trim() || "Wano Update",
+          title: article.querySelector("h3")?.textContent.trim() || "Untitled Post",
+          body: article.querySelector("p")?.textContent.trim() || ""
+        })).filter(post => post.title || post.body);
+        if (sequence === loadSequence) renderPosts(posts.length ? posts : fallback);
+      } catch {
+        if (sequence === loadSequence && !currentPosts.length) renderPosts(fallback);
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

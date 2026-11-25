@@ -38,6 +38,7 @@
             flex-direction: column;
             line-height: 0.9;
         }
+
         .logo span {
             font-size: 10px;
             font-weight: 500;
@@ -53,7 +54,7 @@
             font-weight: 500;
             transition: color 0.2s;
         }
-        
+
         .nav-links a:hover {
             color: #ff4f00; /* Kano Orange */
         }
@@ -101,6 +102,7 @@
             font-size: 16px;
             transition: background-color 0.2s, transform 0.1s;
             box-shadow: 0 4px 12px rgba(255, 79, 0, 0.2);
+            cursor: pointer;
         }
 
         .download-btn:hover {
@@ -115,6 +117,18 @@
             color: #888;
         }
 
+        .dev-notice {
+            display: none;
+            margin-top: 14px;
+            padding: 10px 16px;
+            background-color: #fff3ed;
+            border: 1px solid #ffd1bd;
+            color: #cc3f00;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
         /* Hero Image */
         .hero-image {
             flex: 1;
@@ -127,7 +141,7 @@
             border-radius: 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             /* Placeholder styling if no image is found */
-            background-color: #ddd; 
+            background-color: #ddd;
             min-height: 350px;
             object-fit: cover;
         }
@@ -167,7 +181,8 @@
             <p>Kano's servers are gone, but what kano made doesn't have to go away. Wano brings the desktop, Story Mode, and activities back to life on modern Windows computers. Fully offline. Single file. Simple, fun, and for everyone.</p>
             
             <!-- REPLACE THIS URL WITH YOUR ACTUAL TAILSCALE DOWNLOAD LINK -->
-            <a href="https://mdbcar-services-server1.tail2a4cdb.ts.net/wano/WANO.pyw" class="download-btn" download>DOWNLOAD WANO 5.0.0</a>
+            <a id="download-btn" href="https://mdbcar-services-server1.tail2a4cdb.ts.net/wano/WANO.pyw" class="download-btn" download>DOWNLOAD WANO 5.0.0</a>
+            <div id="dev-notice" class="dev-notice">Wano is still in development, try again shortly.</div>
             <span class="download-meta">Windows .pyw file • 186 MB • Free</span>
         </div>
 
@@ -176,6 +191,22 @@
             <img src="wano-desktop.png" alt="Wano Desktop Interface">
         </div>
     </main>
+
+    <script>
+        // Set to false when Wano is ready for public download
+        const IS_IN_DEV = true;
+
+        const downloadBtn = document.getElementById("download-btn");
+        const devNotice = document.getElementById("dev-notice");
+
+        if (IS_IN_DEV) {
+            downloadBtn.removeAttribute("download");
+            downloadBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                devNotice.style.display = "inline-block";
+            });
+        }
+    </script>
 
 </body>
 </html>

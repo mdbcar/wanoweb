@@ -49,10 +49,7 @@
         .logo {
             display: flex;
             align-items: center;
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
+            text-decoration: none;
             flex-shrink: 0;
         }
 
@@ -60,7 +57,6 @@
             height: 48px;
             width: auto;
             display: block;
-            pointer-events: none;
         }
 
         .nav-links,
@@ -76,12 +72,8 @@
             align-items: center;
         }
 
-        .nav-btn,
         .nav-links a,
         .nav-right-links a {
-            background: none;
-            border: none;
-            padding: 8px 0;
             text-decoration: none;
             color: #6f747a;
             font-size: 16px;
@@ -94,10 +86,10 @@
             cursor: pointer;
         }
 
-        .nav-btn:hover,
         .nav-links a:hover,
         .nav-right-links a:hover,
-        .nav-btn.active-link {
+        .nav-links a.active-link,
+        .nav-right-links a.active-link {
             color: #ff4f00; /* Kano Orange */
         }
 
@@ -105,10 +97,9 @@
             font-size: 10px;
             color: #8c9197;
             transform: translateY(1px);
-            pointer-events: none;
         }
 
-        /* Dropdown Menus (padding-top keeps hover active from button to menu) */
+        /* Dropdown Menus */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -128,26 +119,18 @@
         }
 
         .nav-item:hover .dropdown-menu,
-        .nav-item:focus-within .dropdown-menu,
-        .nav-item.open .dropdown-menu {
+        .nav-item:focus-within .dropdown-menu {
             display: block;
         }
 
-        .dropdown-inner button,
         .dropdown-inner a {
             display: block;
-            width: 100%;
-            text-align: left;
-            background: none;
-            border: none;
             padding: 9px 16px;
             font-size: 14px;
             color: #4b5056;
-            cursor: pointer;
             text-decoration: none;
         }
 
-        .dropdown-inner button:hover,
         .dropdown-inner a:hover {
             background-color: #fff6f2;
             color: #ff4f00;
@@ -477,33 +460,33 @@
     <header class="navbar">
         <div class="nav-left">
             <!-- REPLACE 'wano-logo.png' WITH YOUR LOGO IMAGE FILE IN THE REPO -->
-            <button type="button" class="logo" data-route="start" aria-label="Wano Home">
+            <a href="#start" class="logo" aria-label="Wano Home">
                 <img src="wano-logo.png" alt="Wano - You can make">
-            </button>
+            </a>
 
             <nav class="nav-links" aria-label="Primary Navigation">
                 <div class="nav-item">
-                    <button type="button" class="nav-btn" data-route="products">Products <span class="caret">▼</span></button>
+                    <a href="#products">Products <span class="caret">▼</span></a>
                     <div class="dropdown-menu">
                         <div class="dropdown-inner">
-                            <button type="button" data-route="products">Wano</button>
+                            <a href="#products">Wano</a>
                         </div>
                     </div>
                 </div>
-                <button type="button" class="nav-btn" data-route="support">Support wano</button>
-                <button type="button" class="nav-btn" data-route="downloads">Downloads</button>
+                <a href="#support">Support wano</a>
+                <a href="#downloads">Downloads</a>
             </nav>
         </div>
 
         <div class="nav-right">
             <div class="nav-right-links">
-                <button type="button" class="nav-btn" data-route="blog">Blog</button>
+                <a href="#blog">Blog</a>
                 <a href="https://github.com/mdbcar/Wano" target="_blank" rel="noopener noreferrer">Github</a>
                 <div class="nav-item">
-                    <button type="button" class="nav-btn" data-route="help">Help <span class="caret">▼</span></button>
+                    <a href="#help">Help <span class="caret">▼</span></a>
                     <div class="dropdown-menu">
                         <div class="dropdown-inner">
-                            <button type="button" data-route="help">Help Center</button>
+                            <a href="#help">Help Center</a>
                         </div>
                     </div>
                 </div>
@@ -518,7 +501,7 @@
                 <h1>Anyone can make.</h1>
                 <p>Kano's servers are gone, but what kano made doesn't have to go away. Wano brings the desktop, Story Mode, and activities back to life on modern Windows computers. Fully offline. Single file. Simple, fun, and for everyone.</p>
                 
-                <button type="button" class="cta-btn" data-route="about">LEARN MORE</button>
+                <a href="#about" class="cta-btn">LEARN MORE</a>
             </div>
 
             <div class="hero-image">
@@ -535,7 +518,7 @@
             <div class="hero-text">
                 <h1>Wano</h1>
                 <p>Wano brings Kano's desktop experience, Story Mode, and activities back to life on modern Windows computers—fully offline in a single file.</p>
-                <button type="button" class="cta-btn" data-route="downloads">GO TO DOWNLOADS</button>
+                <a href="#downloads" class="cta-btn">GO TO DOWNLOADS</a>
             </div>
 
             <div class="hero-image">
@@ -551,7 +534,7 @@
             <div class="card-box">
                 <h1>About Wano</h1>
                 <p><!-- WRITE YOUR ABOUT WANO TEXT HERE --></p>
-                <button type="button" class="btn-orange" data-route="start">← Back to Start</button>
+                <a href="#start" class="btn-orange">← Back to Start</a>
             </div>
         </div>
     </section>
@@ -578,7 +561,7 @@
                 <h1>Support Wano</h1>
                 <p>You can support Wano by simply telling other people about it.</p>
                 <p>Share Wano with friends, classmates, retro tech fans, or anyone who enjoyed Kano kits and wants to keep those tools and stories alive.</p>
-                <button type="button" class="btn-orange" data-route="start">Back to Start</button>
+                <a href="#start" class="btn-orange">Back to Start</a>
             </div>
         </div>
     </section>
@@ -672,36 +655,35 @@
             });
         }
 
-        // Dedicated Page View for Each Button
-        const views = {
-            start: document.getElementById("view-start"),
-            products: document.getElementById("view-products"),
-            about: document.getElementById("view-about"),
-            downloads: document.getElementById("view-downloads"),
-            support: document.getElementById("view-support"),
-            blog: document.getElementById("view-blog"),
-            help: document.getElementById("view-help")
+        // Hash-based view routing so every button updates the URL hash and switches views
+        const routeViews = {
+            "#start": "view-start",
+            "": "view-start",
+            "#products": "view-products",
+            "#about": "view-about",
+            "#downloads": "view-downloads",
+            "#support": "view-support",
+            "#blog": "view-blog",
+            "#help": "view-help"
         };
 
-        function showView(routeName) {
-            const targetView = views[routeName] || views.start;
-            Object.values(views).forEach((view) => view.classList.remove("active"));
-            targetView.classList.add("active");
-            if (routeName === "blog") {
+        function syncRouteView() {
+            const hash = window.location.hash || "#start";
+            const activeViewId = routeViews[hash] || "view-start";
+
+            document.querySelectorAll(".page-view").forEach((view) => {
+                view.classList.toggle("active", view.id === activeViewId);
+            });
+
+            if (activeViewId === "view-blog") {
                 loadBlogsFromFile();
             }
+
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
-        // Event delegation ensures clicks work even on nested elements like carets or logos
-        document.addEventListener("click", (e) => {
-            const routeTarget = e.target.closest("[data-route]");
-            if (!routeTarget) return;
-            const route = routeTarget.getAttribute("data-route");
-            if (route && views[route]) {
-                showView(route);
-            }
-        });
+        window.addEventListener("hashchange", syncRouteView);
+        syncRouteView();
 
         // Blog Loader from blogs.html + Password-Protected Composer
         const fallbackPosts = [

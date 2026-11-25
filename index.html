@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wano - Continuing Kano's Legacy</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
+        body {
+            background-color: #f8f8f8; /* Very light grey/off-white like the Kano site */
+            color: #1a1a1a;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #ffffff;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 24px;
+            letter-spacing: -1px;
+            color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            line-height: 0.9;
+        }
+        .logo span {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0px;
+            color: #666;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 15px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #ff4f00; /* Kano Orange */
+        }
+
+        /* Main Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            color: #111;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        /* Download Button */
+        .download-btn {
+            display: inline-block;
+            background-color: #ff4f00; /* Kano Orange */
+            color: white;
+            text-decoration: none;
+            padding: 16px 36px;
+            border-radius: 50px; /* Pill shape */
+            font-weight: 700;
+            font-size: 16px;
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 4px 12px rgba(255, 79, 0, 0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #e64600;
+            transform: translateY(-2px);
+        }
+
+        .download-meta {
+            display: block;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            flex: 1;
+            text-align: right;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            /* Placeholder styling if no image is found */
+            background-color: #ddd; 
+            min-height: 350px;
+            object-fit: cover;
+        }
+
+        /* Responsive Design for mobile */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                margin: 50px auto;
+                text-align: center;
+            }
+            .hero-text h1 { font-size: 36px; }
+            .nav-links { display: none; } /* Hide links on mobile */
+            .hero-image { margin-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="logo">
+            WANO
+            <span>continue the legacy</span>
+        </div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="https://www.youtube.com/@MakeWano" target="_blank">YouTube Channel</a>
+            <a href="#help">Help</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="hero">
+        <div class="hero-text">
+            <h1>Anyone can make.</h1>
+            <p>Kano's servers are gone, but the legacy doesn't have to end. Wano 5.0.0 brings the desktop, Story Mode, and activities back to life on modern Windows computers. Fully offline. Single file. Simple, fun, and for everyone.</p>
+            
+            <!-- REPLACE THIS URL WITH YOUR ACTUAL TAILSCALE DOWNLOAD LINK -->
+            <a href="https://mdbcar-services-server1.tail2a4cdb.ts.net/WANO.pyw" class="download-btn" download>DOWNLOAD WANO 5.0.0</a>
+            <span class="download-meta">Windows .pyw file • 186 MB • Free</span>
+        </div>
+
+        <div class="hero-image">
+            <!-- REPLACE 'wano-desktop.png' WITH YOUR ACTUAL SCREENSHOT IMAGE FILE -->
+            <img src="wano-desktop.png" alt="Wano Desktop Interface">
+        </div>
+    </main>
+
+</body>
+</html>

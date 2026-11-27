@@ -2,11 +2,11 @@
   "signed": {
     "schema": 1,
     "product": "WANO",
-    "version": "5.0.0 Beta 2",
-    "sha256": "70d1f16620845b266e637bdb59b3987e38e9c0a459ae86497204d86b21dbeacf",
-    "size": 207418954,
+    "version": "5.0.0 Beta 3",
+    "sha256": "2b7d59d4714988cf629b1ff9a9e17488dd221a94d34c2f352004d1441f36b887",
+    "size": 208874863,
     "url": "https://mdbcar-services-server1.tail2a4cdb.ts.net/wano.pyw"
   },
   "key_id": "68d2796ec02f987a",
-  "signature": "z9W2aUjQn4NKzAyCiYs8Mbm/V4GEfvAID2k8Fk/qjYb9z6ELiBdqGyd/OvJRmg30k7kj2x1ZfMRAKNWntJvYBw=="
+  "signature": "RcpcTNYe/pNBIM0fSWNuFysOnDwLkAt4BzQ5q7Lm4N8ZvkqsxrBMbijq4yT6hVF2DUtTNPNBugK4VMHZQXxUCA=="
 }

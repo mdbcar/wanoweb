@@ -3,10 +3,10 @@
     "schema": 1,
     "product": "WANO",
     "version": "5.0.0 Beta 3",
-    "sha256": "ba330aa65824ba3f29cd78123bfd9dfff264b734172cc3496e6d7ba06cf5b35a",
-    "size": 209393116,
+    "sha256": "98b57ae4c88e11e90a277259defb70072d77c0be752f24302fab6b737b79b3bb",
+    "size": 209849862,
     "url": "https://mdbcar-services-server1.tail2a4cdb.ts.net/wano.pyw"
   },
   "key_id": "68d2796ec02f987a",
-  "signature": "ZqHEQeTYnLvAR4UW/WLPDg/QdxjsOwqTAPQ9CsBsUuJUZieXAlDHgXIVVJybbq2ajyduH/3n3YhYQvRSuI+iDQ=="
+  "signature": "t8Yhrm5CX3pw3QVlDtBHbNhEJvIP0pK/4jZiWcVZFSBbssmvzBR8xmQLzOvhyGcBO+yQ/SgGwVHQ7gNBGt06Dg=="
 }
